@@ -1,0 +1,2888 @@
+{
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|1": [
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 INNER JOIN companies AS T2 ON T1.cik = T2.cik WHERE T2.name = 'Apple' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 12.692133100004867,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|1": [
+  {
+   "sql": "select revenue from annual_financials where ticker = 'AAPL' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 10.53644059994258,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|1": [
+  {
+   "sql": "select revenue from annual_financials where ticker = 'AAPL' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 10.53644059994258,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|2": [
+  {
+   "sql": "SELECT T1.net_income FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Technology' AND T2.calendar_year = 2024 AND T2.name = 'Microsoft'",
+   "status": "ok",
+   "seconds": 15.907667799969204,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|2": [
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Microsoft' AND T2.calendar_year = 2024 AND T2.roe IS NOT NULL ORDER BY T2.roe DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.20741110004019,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|2": [
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Microsoft' AND T2.calendar_year = 2024 AND T2.roe IS NOT NULL ORDER BY T2.roe DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.37204719998408,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nINNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik \nWHERE T2.sector = 'Microsoft' AND T2.calendar_year = 2024 AND T2.roe IS NOT NULL",
+   "status": "ok",
+   "seconds": 20.991540700080805,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nINNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik \nWHERE T2.sector = 'Microsoft' AND T2.calendar_year = 2024 AND T2.roe IS NOT NULL",
+   "status": "ok",
+   "seconds": 20.681447400012985,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|3": [
+  {
+   "sql": "SELECT SUM(total_assets) AS total_assets_2025\nFROM annual_financials\nWHERE ticker = 'JPMorgan'\nAND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 11.546800200012513,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|3": [
+  {
+   "sql": "select sum(total_assets) as total_assets_2025 from annual_financials where ticker = 'JPM' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 13.97938139992766,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|3": [
+  {
+   "sql": "select sum(total_assets) as total_assets_2025 from annual_financials where ticker = 'JPM' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 13.97938139992766,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|4": [
+  {
+   "sql": "SELECT \n    T1.name AS company_name,\n    T1.sector,\n    T1.revenue,\n    T1.net_income,\n    T1.operating_margin,\n    T1.roe,\n    T1.roa,\n    T1.liabilities_to_equity,\n    T1.equity_ratio,\n    T1.fcf_to_net_income,\n    T1.free_cash_flow,\n    T1.rnd_intensity,\n    T1.revenue_growth\nFROM \n    annual_financials AS T1\nJOIN \n    financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE \n    T2.name = 'NVIDIA' AND T2.sector = 'Technology'\nORDER BY",
+   "status": "parse error: Required keyword: 'expressions' missing for <class 'sqlglot.expressions.query.Order'>. Line 21, Col: 8.",
+   "seconds": 36.05528499989305,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|4": [
+  {
+   "sql": "select net_margin from financial_ratios where ticker = 'NVDA' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 11.68940879998263,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|4": [
+  {
+   "sql": "select net_margin from financial_ratios where ticker = 'NVDA' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 11.68940879998263,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|5": [
+  {
+   "sql": "SELECT T1.revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.ticker = 'Coca-Cola' AND T2.calendar_year = 2023 AND T2.sector = 'Consumer Goods'",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"revenue_growth\"",
+   "seconds": 16.057226400007494,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|5": [
+  {
+   "sql": "SELECT T1.roe FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T1.ticker = 'CSCO' AND T2.sector = 'Banks and finance' AND T2.calendar_year = 2023",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"roe\"",
+   "seconds": 19.4161194000626,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|5": [
+  {
+   "sql": "SELECT T1.roe FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T1.ticker = 'CSCO' AND T2.sector = 'Banks and finance' AND T2.calendar_year = 2023",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"roe\"",
+   "seconds": 19.28423530003056,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T2.roe FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T1.ticker = 'CSCO' AND T2.sector = 'Banks and finance' AND T2.calendar_year = 2023",
+   "status": "ok",
+   "seconds": 20.50333199999295,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T2.roe FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T1.ticker = 'CSCO' AND T2.sector = 'Banks and finance' AND T2.calendar_year = 2023",
+   "status": "ok",
+   "seconds": 21.5341449000407,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|6": [
+  {
+   "sql": "SELECT SUM(fcf_to_net_income) AS total_research_and_dev FROM financial_ratios WHERE sector = 'Research and Development' AND calendar_year = 2025 AND name = 'Meta'",
+   "status": "ok",
+   "seconds": 11.166719900094904,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|6": [
+  {
+   "sql": "SELECT SUM(rnd_expense) FROM financial_ratios WHERE ticker = 'META' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 11.448650800040923,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|6": [
+  {
+   "sql": "SELECT SUM(rnd_expense) FROM financial_ratios WHERE ticker = 'META' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 11.330270400037989,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(rnd_expense) \nFROM financial_ratios \nWHERE ticker = 'META' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 13.33022559992969,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(rnd_expense) \nFROM financial_ratios \nWHERE ticker = 'META' AND calendar_year = 2025 AND sector = 'Research and Development'",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 15.652845799922943,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|7": [
+  {
+   "sql": "SELECT \n    T1.name AS company_name,\n    T1.sector,\n    T1.revenue,\n    T1.operating_income,\n    T1.net_income,\n    T1.total_assets,\n    T1.total_liabilities,\n    T1.equity,\n    T1.cash,\n    T1.long_term_debt,\n    T1.operating_cash_flow,\n    T1.capex,\n    T1.rnd_expense,\n    T1.eps_diluted,\n    T1.fcf_to_net_income,\n    T1.free_cash_flow,\n    T1.rnd_intensity,\n    T1.revenue_growth\nFROM \n    annual_financials AS T1\nJOIN \n    financial_ratios AS T2 ON T1.cik = T2.c",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"c\"",
+   "seconds": 35.87387140002102,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|7": [
+  {
+   "sql": "select round(sum(distributable_equity * net_income) / sum(net_income), 2) as diluted_eps from annual_financials where ticker = 'MSFT' and calendar_year = 2022",
+   "status": "database error: Binder Error: Referenced column \"distributable_equity\" not found in FROM clause!",
+   "seconds": 16.11680850002449,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|7": [
+  {
+   "sql": "select round(sum(distributable_equity * net_income) / sum(net_income), 2) as diluted_eps from annual_financials where ticker = 'MSFT' and calendar_year = 2022",
+   "status": "database error: Binder Error: Referenced column \"distributable_equity\" not found in FROM clause!",
+   "seconds": 15.98970619996544,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    SUM(T1.net_income * T2.distributable_equity) / SUM(T2.net_income) AS diluted_eps\nFROM \n    annual_financials AS T1\nJOIN \n    financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"distributable_equity\"",
+   "seconds": 22.39551629999187,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    SUM(T1.net_income * T2.distributable_equity) / SUM(T2.net_income) AS diluted_eps FROM annual_financials AS T1 JOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year WHERE T2.ticker = 'MSFT' AND T1.calendar_year = 2022",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"distributable_equity\"",
+   "seconds": 25.324360299971886,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|8": [
+  {
+   "sql": "SELECT DISTINCT T1.name AS company_name, T1.cik, T1.ticker, T1.sector, T1.calendar_year, T1.revenue_growth, T1.fcf_to_net_income, T1.rnd_intensity, T1.net_income FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Technology' AND T2.calendar_year = 2024 AND T2.name LIKE '%Alphabet%'",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"revenue_growth\"",
+   "seconds": 25.09350540000014,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|8": [
+  {
+   "sql": "select round(free_cash_flow, 2) as free_cash_flow_2024 from annual_financials where ticker = 'AAPL' and calendar_year = 2024",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 15.280728199984878,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|8": [
+  {
+   "sql": "select round(free_cash_flow, 2) as free_cash_flow_2024 from annual_financials where ticker = 'AAPL' and calendar_year = 2024",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 15.639181000064127,
+   "rows": null
+  },
+  {
+   "sql": "SELECT round(free_cash_flow, 2) AS free_cash_flow_2024 \nFROM annual_financials \nWHERE ticker = 'AAPL' AND calendar_year = 2024",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 16.300884300027974,
+   "rows": null
+  },
+  {
+   "sql": "SELECT round(free_cash_flow, 2) AS free_cash_flow_2024 \nFROM annual_financials \nWHERE ticker = 'AAPL' AND calendar_year = 2024",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 17.33652099990286,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|9": [
+  {
+   "sql": "SELECT sector FROM annual_financials WHERE ticker = 'NFLX'",
+   "status": "ok",
+   "seconds": 5.4649176999228075,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|9": [
+  {
+   "sql": "SELECT sector FROM companies WHERE ticker = 'NFLX'",
+   "status": "ok",
+   "seconds": 7.963678799918853,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|9": [
+  {
+   "sql": "SELECT sector FROM companies WHERE ticker = 'NFLX'",
+   "status": "ok",
+   "seconds": 7.963678799918853,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|10": [
+  {
+   "sql": "SELECT T1.operating_margin FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.ticker = 'TSLA' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 13.924539900035597,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|10": [
+  {
+   "sql": "SELECT T1.operating_margin FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Electronics' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 17.07372220000252,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|10": [
+  {
+   "sql": "SELECT T1.operating_margin FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Electronics' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 17.10235770000145,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T2.operating_margin FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Electronics' AND T2.calendar_year = 2025 AND T2.operating_margin IS NOT NULL",
+   "status": "ok",
+   "seconds": 20.796402500011027,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T2.operating_margin FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Electronics' AND T2.calendar_year = 2025 AND T2.operating_margin IS NOT NULL",
+   "status": "ok",
+   "seconds": 20.72390920005273,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|11": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025\nORDER BY revenue DESC\nLIMIT 5",
+   "status": "ok",
+   "seconds": 9.168920999974944,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|11": [
+  {
+   "sql": "select ticker, name from annual_financials where calendar_year = 2025 order by revenue desc limit 5",
+   "status": "ok",
+   "seconds": 10.973792399978265,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|11": [
+  {
+   "sql": "select ticker, name from annual_financials where calendar_year = 2025 order by revenue desc limit 5",
+   "status": "ok",
+   "seconds": 10.973792399978265,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|12": [
+  {
+   "sql": "SELECT name FROM annual_financials WHERE calendar_year = 2024 AND sector = 'Financial' ORDER BY net_income DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 9.064254999975674,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|12": [
+  {
+   "sql": "SELECT ticker FROM annual_financials WHERE calendar_year = 2024 AND operating_income = ( SELECT MAX(operating_income) FROM annual_financials WHERE calendar_year = 2024 )",
+   "status": "ok",
+   "seconds": 15.185622099903412,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|12": [
+  {
+   "sql": "SELECT ticker FROM annual_financials WHERE calendar_year = 2024 AND operating_income = ( SELECT MAX(operating_income) FROM annual_financials WHERE calendar_year = 2024 )",
+   "status": "ok",
+   "seconds": 15.185622099903412,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|13": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025\nORDER BY net_margin DESC\nLIMIT 3",
+   "status": "database error: Binder Error: Referenced column \"net_margin\" not found in FROM clause!",
+   "seconds": 9.259240900049917,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|13": [
+  {
+   "sql": "select ticker, name, max(net_margin) as max_net_margin\nfrom annual_financials\nwhere calendar_year = 2025\ngroup by ticker, name",
+   "status": "database error: Binder Error: Referenced column \"net_margin\" not found in FROM clause!",
+   "seconds": 14.170354299945757,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|13": [
+  {
+   "sql": "select ticker, name, max(net_margin) as max_net_margin\nfrom annual_financials\nwhere calendar_year = 2025\ngroup by ticker, name",
+   "status": "database error: Binder Error: Referenced column \"net_margin\" not found in FROM clause!",
+   "seconds": 14.363951399922371,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker, name, MAX(net_margin) AS max_net_margin\nFROM annual_financials\nWHERE calendar_year = 2025\nGROUP BY ticker, name",
+   "status": "database error: Binder Error: Referenced column \"net_margin\" not found in FROM clause!",
+   "seconds": 15.284097200026736,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker, name, MAX(net_margin) AS max_net_margin\nFROM annual_financials\nWHERE calendar_year = 2025\nGROUP BY ticker, name",
+   "status": "database error: Binder Error: Referenced column \"net_margin\" not found in FROM clause!",
+   "seconds": 14.637406300054863,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|14": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025\n  AND sector = 'Financial'\nORDER BY (ROE - 1) * 100 / ROA\nLIMIT 5",
+   "status": "database error: Binder Error: Referenced column \"ROE\" not found in FROM clause!",
+   "seconds": 13.30310549994465,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|14": [
+  {
+   "sql": "select ticker, sector, roe from financial_ratios where calendar_year = 2025 and roe is not null order by roe asc limit 5",
+   "status": "ok",
+   "seconds": 13.548277599969879,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|14": [
+  {
+   "sql": "select ticker, sector, roe from financial_ratios where calendar_year = 2025 and roe is not null order by roe asc limit 5",
+   "status": "ok",
+   "seconds": 13.548277599969879,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|15": [
+  {
+   "sql": "SELECT name FROM companies WHERE cik IN (SELECT cik FROM annual_financials WHERE calendar_year = 2025 AND sector = 'R&D') ORDER BY revenue DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"revenue\" not found in FROM clause!",
+   "seconds": 11.897844700026326,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|15": [
+  {
+   "sql": "SELECT T1.name FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 AND T2.sector IN ('Technology hardware', 'Telecom and media') ORDER BY T2.rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"rnd_expense\"",
+   "seconds": 21.00609669997357,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|15": [
+  {
+   "sql": "SELECT T1.name FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 AND T2.sector IN ('Technology hardware', 'Telecom and media') ORDER BY T2.rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"rnd_expense\"",
+   "seconds": 20.737717000069097,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T1.name FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 AND T2.sector IN ('Technology hardware', 'Telecom and media') ORDER BY T2.rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"rnd_expense\"",
+   "seconds": 23.171940200030804,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T1.name FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 AND T2.sector IN ('Technology hardware', 'Telecom and media') ORDER BY T2.rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"rnd_expense\"",
+   "seconds": 23.207883499911986,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|16": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025\nORDER BY revenue_growth DESC\nLIMIT 3",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 9.589126299950294,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|16": [
+  {
+   "sql": "select ticker, max(revenue_growth) from annual_financials where calendar_year = 2025 group by ticker having count(*) >= 3",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 13.669568700017408,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|16": [
+  {
+   "sql": "select ticker, max(revenue_growth) from annual_financials where calendar_year = 2025 group by ticker having count(*) >= 3",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 13.711434100056067,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker, MAX(revenue_growth) \nFROM annual_financials \nWHERE calendar_year = 2025 \nGROUP BY ticker \nHAVING COUNT(*) >= 3",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 15.457090600044467,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker, MAX(revenue_growth)\nFROM annual_financials\nWHERE calendar_year = 2025\nGROUP BY ticker\nHAVING COUNT(*) >= 3",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 16.45964959997218,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|17": [
+  {
+   "sql": "SELECT \n    c.name AS bank_name,\n    SUM(f.total_assets) AS total_assets_2025\nFROM \n    annual_financials f\nJOIN \n    companies c ON f.cik = c.cik\nWHERE \n    f.calendar_year = 2025\nGROUP BY \n    c.name\nORDER BY \n    total_assets_2025 DESC\nLIMIT 1",
+   "status": "ok",
+   "seconds": 21.443980299984105,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|17": [
+  {
+   "sql": "SELECT T1.ticker FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 ORDER BY T2.total_assets DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"total_assets\"",
+   "seconds": 17.341581400018185,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|17": [
+  {
+   "sql": "SELECT T1.ticker FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 ORDER BY T2.total_assets DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"total_assets\"",
+   "seconds": 17.24825049994979,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T1.ticker FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 AND T2.sector = 'Banks and finance' GROUP BY T1.ticker ORDER BY SUM(T2.total_assets) DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"total_assets\"",
+   "seconds": 21.755197099992074,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T1.ticker FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.calendar_year = 2025 AND T2.sector = 'Banks and finance' GROUP BY T1.ticker ORDER BY SUM(T2.total_assets) DESC LIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"total_assets\"",
+   "seconds": 23.377575600054115,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|18": [
+  {
+   "sql": "SELECT *\nFROM financial_ratios\nWHERE calendar_year = 2025\n  AND sector = 'Research and Development'\nORDER BY R&D_over_REVENUE DESC\nLIMIT 5",
+   "status": "database error: Binder Error: Referenced column \"R\" not found in FROM clause!",
+   "seconds": 11.784281100030057,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|18": [
+  {
+   "sql": "select ticker, sector, max(rnd_intensity) as max_rnd_intensity\nfrom financial_ratios\nwhere calendar_year = 2025\ngroup by ticker, sector\norder by max_rnd_intensity desc\nlimit 5",
+   "status": "ok",
+   "seconds": 17.131310800090432,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|18": [
+  {
+   "sql": "select ticker, sector, max(rnd_intensity) as max_rnd_intensity\nfrom financial_ratios\nwhere calendar_year = 2025\ngroup by ticker, sector\norder by max_rnd_intensity desc\nlimit 5",
+   "status": "ok",
+   "seconds": 17.131310800090432,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|19": [
+  {
+   "sql": "SELECT *\nFROM financial_ratios\nWHERE calendar_year = 2025\nORDER BY free_cash_flow DESC\nLIMIT 3",
+   "status": "ok",
+   "seconds": 9.520408699987456,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|19": [
+  {
+   "sql": "select ticker, max(free_cash_flow) as max_free_cash_flow\nfrom annual_financials\nwhere calendar_year = 2025\ngroup by ticker\norder by max_free_cash_flow desc\nlimit 3",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 16.49371730000712,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|19": [
+  {
+   "sql": "select ticker, max(free_cash_flow) as max_free_cash_flow\nfrom annual_financials\nwhere calendar_year = 2025\ngroup by ticker\norder by max_free_cash_flow desc\nlimit 3",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 16.450478099985048,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker, MAX(free_cash_flow) AS max_free_cash_flow\nFROM annual_financials\nWHERE calendar_year = 2025\nGROUP BY ticker\nORDER BY max_free_cash_flow DESC\nLIMIT 3",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 17.571252599940635,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker, MAX(free_cash_flow) AS max_free_cash_flow\nFROM annual_financials\nWHERE calendar_year = 2025\nGROUP BY ticker\nORDER BY max_free_cash_flow DESC\nLIMIT 3",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 18.420400899951346,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|20": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025 AND name = 'company_name' AND sector = 'industry'\nORDER BY net_loss DESC\nLIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"net_loss\" not found in FROM clause!",
+   "seconds": 11.981470300001092,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|20": [
+  {
+   "sql": "SELECT ticker FROM annual_financials WHERE calendar_year = 2025 AND name IS NOT NULL ORDER BY net_loss DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"net_loss\" not found in FROM clause!",
+   "seconds": 11.803077900083736,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|20": [
+  {
+   "sql": "SELECT ticker FROM annual_financials WHERE calendar_year = 2025 AND name IS NOT NULL ORDER BY net_loss DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"net_loss\" not found in FROM clause!",
+   "seconds": 11.834194099996239,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker FROM annual_financials WHERE calendar_year = 2025 AND name IS NOT NULL ORDER BY net_loss DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"net_loss\" not found in FROM clause!",
+   "seconds": 13.431236100033857,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker FROM annual_financials WHERE calendar_year = 2025 AND name IS NOT NULL ORDER BY net_loss DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"net_loss\" not found in FROM clause!",
+   "seconds": 13.631737400079146,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|21": [
+  {
+   "sql": "SELECT COUNT(cik) FROM companies WHERE sector = 'Technology' AND sector IN ('Hardware')",
+   "status": "ok",
+   "seconds": 6.584841499920003,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|21": [
+  {
+   "sql": "select count(*) as num_companies from companies where sector = 'Technology hardware'",
+   "status": "ok",
+   "seconds": 9.863496999954805,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|21": [
+  {
+   "sql": "select count(*) as num_companies from companies where sector = 'Technology hardware'",
+   "status": "ok",
+   "seconds": 9.863496999954805,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|22": [
+  {
+   "sql": "SELECT SUM(revenue) AS total_revenue\nFROM annual_financials\nWHERE cik IN (SELECT cik FROM companies WHERE name = 'Retail') AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 12.305247099953704,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|22": [
+  {
+   "sql": "SELECT SUM(T1.revenue) AS total_revenue FROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sector = 'Retail' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.63043140002992,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|22": [
+  {
+   "sql": "SELECT SUM(T1.revenue) AS total_revenue FROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sector = 'Retail' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.63043140002992,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|23": [
+  {
+   "sql": "SELECT AVG(net_margin) AS median_net_margin\nFROM financial_ratios\nJOIN annual_financials ON financial_ratios.cik = annual_financials.cik\nWHERE annual_financials.sector = 'Software and internet' AND annual_financials.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 16.389096400002018,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|23": [
+  {
+   "sql": "select round(avg(net_margin), 2) as median_net_margin \nfrom financial_ratios \nwhere sector = 'Software and internet' \nand calendar_year = 2025",
+   "status": "ok",
+   "seconds": 14.569238999974914,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|23": [
+  {
+   "sql": "select round(avg(net_margin), 2) as median_net_margin \nfrom financial_ratios \nwhere sector = 'Software and internet' \nand calendar_year = 2025",
+   "status": "ok",
+   "seconds": 14.569238999974914,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|24": [
+  {
+   "sql": "SELECT \n    sector, \n    AVG(roe) AS avg_return_on_equity_2025\nFROM \n    financial_ratios\nWHERE \n    calendar_year = 2025\nGROUP BY \n    sector",
+   "status": "ok",
+   "seconds": 13.719062400050461,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|24": [
+  {
+   "sql": "select \n    sector, \n    round(avg(rnd_expense / revenue * 100), 2) as avg_return_on_equity\nfrom \n    financial_ratios\nwhere \n    calendar_year = 2025\ngroup by \n    sector",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 18.481197700020857,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|24": [
+  {
+   "sql": "select \n    sector, \n    round(avg(rnd_expense / revenue * 100), 2) as avg_return_on_equity\nfrom \n    financial_ratios\nwhere \n    calendar_year = 2025\ngroup by \n    sector",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 18.490968300029635,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    sector, \n    ROUND(AVG(rnd_expense / revenue * 100), 2) AS avg_return_on_equity\nFROM \n    financial_ratios\nWHERE \n    calendar_year = 2025\nGROUP BY \n    sector",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 19.405274800024927,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    sector, \n    ROUND(AVG(rnd_expense / revenue * 100), 2) AS avg_return_on_equity\nFROM \n    financial_ratios\nWHERE \n    calendar_year = 2025\nGROUP BY \n    sector",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 20.671456600073725,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|25": [
+  {
+   "sql": "SELECT COUNT(cik) FROM annual_financials WHERE calendar_year = 2025 AND name NOT IN (SELECT name FROM financial_ratios WHERE calendar_year = 2025 AND name LIKE '%net income')",
+   "status": "ok",
+   "seconds": 12.360109100001864,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|25": [
+  {
+   "sql": "SELECT COUNT(cik) FROM annual_financials WHERE calendar_year = 2025 AND name IS NOT NULL AND name <> ''",
+   "status": "ok",
+   "seconds": 11.631976900040172,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|25": [
+  {
+   "sql": "SELECT COUNT(cik) FROM annual_financials WHERE calendar_year = 2025 AND name IS NOT NULL AND name <> ''",
+   "status": "ok",
+   "seconds": 11.631976900040172,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|26": [
+  {
+   "sql": "SELECT \n    t1.ticker AS ticker,\n    t1.name AS name,\n    t1.sector AS sector,\n    t1.calendar_year AS calendar_year,\n    SUM(t2.net_income) AS total_net_income\nFROM \n    annual_financials AS t1\nJOIN \n    companies AS t2 ON t1.cik = t2.cik\nWHERE \n    t1.calendar_year >= '2020'\nGROUP BY \n    t1.ticker, t1.name, t1.sector, t1.calendar_year",
+   "status": "database error: Binder Error: Table \"t2\" does not have a column named \"net_income\"",
+   "seconds": 26.702932599931955,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|26": [
+  {
+   "sql": "SELECT \n    sector, \n    YEAR(calendar_year) AS year, \n    SUM(net_income) AS total_net_income\nFROM \n    annual_financials\nWHERE \n    ticker IN ('WMT', 'JPM', 'JNJ', 'MCD', 'MDT') -- Example sectors to filter\nGROUP BY \n    sector, \n    YEAR(calendar_year)\nORDER BY \n    sector, \n    year",
+   "status": "database error: Binder Error: No function matches the given name and argument types 'year(INTEGER)'. You might need to add explicit type casts.",
+   "seconds": 24.846778800012544,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|26": [
+  {
+   "sql": "SELECT \n    sector, \n    YEAR(calendar_year) AS year, \n    SUM(net_income) AS total_net_income\nFROM \n    annual_financials\nWHERE \n    ticker IN ('WMT', 'JPM', 'JNJ', 'MCD', 'MDT') -- Example sectors to filter\nGROUP BY \n    sector, \n    YEAR(calendar_year)\nORDER BY \n    sector, \n    year",
+   "status": "database error: Binder Error: No function matches the given name and argument types 'year(INTEGER)'. You might need to add explicit type casts.",
+   "seconds": 24.716357800061814,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    sector, \n    YEAR(calendar_year) AS year, \n    SUM(net_income) AS total_net_income\nFROM \n    annual_financials\nWHERE \n    ticker IN ('WMT', 'JPM', 'JNJ', 'MCD', 'MDT') -- Example sectors to filter\nGROUP BY \n    sector, \n    YEAR(calendar_year)\nORDER BY \n    sector, \n    year",
+   "status": "database error: Binder Error: No function matches the given name and argument types 'year(INTEGER)'. You might need to add explicit type casts.",
+   "seconds": 26.222651300020516,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    sector, \n    YEAR(calendar_year) AS year, \n    SUM(net_income) AS total_net_income\nFROM \n    annual_financials\nWHERE \n    ticker IN ('WMT', 'JPM', 'JNJ', 'MCD', 'MDT') -- Example sectors to filter\nGROUP BY \n    sector, \n    YEAR(calendar_year)\nHAVING \n    COUNT(*) > 1\nORDER BY \n    sector, \n    year",
+   "status": "database error: Binder Error: No function matches the given name and argument types 'year(INTEGER)'. You might need to add explicit type casts.",
+   "seconds": 28.9712299000239,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|27": [
+  {
+   "sql": "SELECT sector, COUNT(cik) AS num_companies\nFROM companies\nJOIN annual_financials ON companies.cik = annual_financials.cik\nGROUP BY sector",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"sector\" (use: 'companies.sector' or 'annual_financials.sector')",
+   "seconds": 11.186951900017448,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|27": [
+  {
+   "sql": "SELECT sector, COUNT(*) AS num_companies FROM annual_financials GROUP BY sector",
+   "status": "ok",
+   "seconds": 10.229710100102238,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|27": [
+  {
+   "sql": "SELECT sector, COUNT(*) AS num_companies FROM annual_financials GROUP BY sector",
+   "status": "ok",
+   "seconds": 10.229710100102238,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|28": [
+  {
+   "sql": "SELECT sector\nFROM annual_financials\nWHERE calendar_year = 2025\nGROUP BY sector\nORDER BY SUM(revenue) DESC\nLIMIT 1",
+   "status": "ok",
+   "seconds": 10.80789019993972,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|28": [
+  {
+   "sql": "SELECT sector FROM financial_ratios WHERE calendar_year = 2025 AND rnd_expense IS NOT NULL ORDER BY rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 12.282066300045699,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|28": [
+  {
+   "sql": "SELECT sector FROM financial_ratios WHERE calendar_year = 2025 AND rnd_expense IS NOT NULL ORDER BY rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 12.189090400002897,
+   "rows": null
+  },
+  {
+   "sql": "SELECT sector FROM financial_ratios WHERE calendar_year = 2025 AND rnd_expense IS NOT NULL ORDER BY rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 13.992457999964245,
+   "rows": null
+  },
+  {
+   "sql": "SELECT sector FROM financial_ratios WHERE calendar_year = 2025 AND rnd_expense IS NOT NULL ORDER BY rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 13.851152000017464,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|29": [
+  {
+   "sql": "SELECT AVG(T1.operating_margin) AS avg_operating_margin\nFROM annual_financials AS T1\nJOIN companies AS T2 ON T1.cik = T2.cik\nWHERE T2.sector = 'Healthcare' AND T1.calendar_year = 2024",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 16.379462699987926,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|29": [
+  {
+   "sql": "SELECT AVG(T1.operating_margin) AS average_operating_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Health care'\nORDER BY T2.calendar_year DESC",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 20.957924999995157,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|29": [
+  {
+   "sql": "SELECT AVG(T1.operating_margin) AS average_operating_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Health care'\nORDER BY T2.calendar_year DESC",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 13.488075000001118,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(T2.operating_margin) AS average_operating_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Health care'",
+   "status": "ok",
+   "seconds": 11.61824159999378,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|30": [
+  {
+   "sql": "SELECT SUM(fcf_to_net_income) AS total_free_cash_flow_2025\nFROM financial_ratios\nWHERE calendar_year = 2025",
+   "status": "ok",
+   "seconds": 5.7175780000397936,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|30": [
+  {
+   "sql": "select sum(total_free_cash_flow) as total_free_cash_flow from annual_financials where calendar_year = 2025",
+   "status": "database error: Binder Error: Column \"total_free_cash_flow\" referenced that exists in the SELECT clause - but this column cannot be referenced before it is defined",
+   "seconds": 6.032941699959338,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|30": [
+  {
+   "sql": "select sum(total_free_cash_flow) as total_free_cash_flow from annual_financials where calendar_year = 2025",
+   "status": "database error: Binder Error: Column \"total_free_cash_flow\" referenced that exists in the SELECT clause - but this column cannot be referenced before it is defined",
+   "seconds": 5.873038100078702,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(total_free_cash_flow) AS total_free_cash_flow FROM annual_financials WHERE calendar_year = 2025",
+   "status": "database error: Binder Error: Column \"total_free_cash_flow\" referenced that exists in the SELECT clause - but this column cannot be referenced before it is defined",
+   "seconds": 6.220797099987976,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(total_free_cash_flow) AS total_free_cash_flow \nFROM annual_financials \nWHERE calendar_year = 2025",
+   "status": "database error: Binder Error: Column \"total_free_cash_flow\" referenced that exists in the SELECT clause - but this column cannot be referenced before it is defined",
+   "seconds": 6.804513499955647,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|31": [
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 INNER JOIN companies AS T2 ON T1.cik = T2.cik WHERE T2.name = 'NVIDIA' AND T1.calendar_year BETWEEN 2020 AND 2025",
+   "status": "ok",
+   "seconds": 7.37527499999851,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|31": [
+  {
+   "sql": "SELECT \n    calendar_year AS Year, \n    operating_income AS Revenue_2020, \n    operating_income AS Revenue_2021, \n    operating_income AS Revenue_2022, \n    operating_income AS Revenue_2023, \n    operating_income AS Revenue_2024, \n    operating_income AS Revenue_2025\nFROM \n    annual_financials\nWHERE \n    ticker = 'NVDA'\nORDER BY \n    calendar_year ASC",
+   "status": "ok",
+   "seconds": 15.617008999921381,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|31": [
+  {
+   "sql": "SELECT \n    calendar_year AS Year, \n    operating_income AS Revenue_2020, \n    operating_income AS Revenue_2021, \n    operating_income AS Revenue_2022, \n    operating_income AS Revenue_2023, \n    operating_income AS Revenue_2024, \n    operating_income AS Revenue_2025\nFROM \n    annual_financials\nWHERE \n    ticker = 'NVDA'\nORDER BY \n    calendar_year ASC",
+   "status": "ok",
+   "seconds": 15.617008999921381,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|32": [
+  {
+   "sql": "SELECT T1.revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.ticker = 'MSFT' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"revenue_growth\"",
+   "seconds": 7.249816700001247,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|32": [
+  {
+   "sql": "SELECT T1.revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Microsoft' AND T1.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"revenue_growth\"",
+   "seconds": 8.44797269999981,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|32": [
+  {
+   "sql": "SELECT T1.revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Microsoft' AND T1.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"revenue_growth\"",
+   "seconds": 8.369981600088067,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T2.revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Microsoft' AND T1.calendar_year = 2025 AND T2.revenue_growth IS NOT NULL",
+   "status": "ok",
+   "seconds": 10.310408700024709,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T2.revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Microsoft' AND T1.calendar_year = 2025 AND T2.revenue_growth IS NOT NULL ORDER BY T2.revenue_growth ASC LIMIT 1",
+   "status": "ok",
+   "seconds": 11.464248799951747,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|33": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials WHERE ticker = 'AAPL' ORDER BY revenue DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 3.50385079998523,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|33": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials WHERE ticker = 'AAPL' ORDER BY revenue DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 5.191141700022854,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|33": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials WHERE ticker = 'AAPL' ORDER BY revenue DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 5.191141700022854,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|34": [
+  {
+   "sql": "SELECT COUNT(calendar_year) FROM annual_financials WHERE ticker = 'TSLA' AND name = 'net_loss'",
+   "status": "ok",
+   "seconds": 4.194978200015612,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|34": [
+  {
+   "sql": "SELECT COUNT(calendar_year) FROM annual_financials WHERE ticker = 'TSLA' AND operating_margin IS NULL",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 5.065590800018981,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|34": [
+  {
+   "sql": "SELECT COUNT(calendar_year) FROM annual_financials WHERE ticker = 'TSLA' AND operating_margin IS NULL",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 5.146042999927886,
+   "rows": null
+  },
+  {
+   "sql": "SELECT COUNT(calendar_year) FROM annual_financials WHERE ticker = 'TSLA' AND operating_margin IS NOT NULL",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 5.973739100038074,
+   "rows": null
+  },
+  {
+   "sql": "SELECT COUNT(calendar_year) FROM annual_financials WHERE ticker = 'TSLA' AND operating_margin IS NOT NULL ORDER BY calendar_year ASC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 6.578224100056104,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|35": [
+  {
+   "sql": "SELECT \n    annual_financials.ticker AS ticker,\n    annual_financials.name AS name,\n    annual_financials.sector AS sector,\n    annual_financials.calendar_year AS calendar_year,\n    annual_financials.revenue AS revenue,\n    annual_financials.operating_income AS operating_income,\n    annual_financials.net_income AS net_income,\n    annual_financials.total_assets AS total_assets,\n    annual_financials.total_liabilities AS total_liabilities,\n    annual_financials.equity AS equity,\n    annual_financials.cash AS cash,\n    annual_financials.long_term_debt AS long_term_debt,\n    annual_financials.operating_cash_flow AS operating_cash_flow,\n    annual_financials.capex AS cap",
+   "status": "database error: Binder Error: Referenced table \"annual_financials\" not found!",
+   "seconds": 19.683020500000566,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|35": [
+  {
+   "sql": "SELECT \n    calendar_year AS Year, \n    ticker AS Company, \n    name AS CompanyName, \n    SUM(operating_income) AS TotalOperatingIncome, \n    SUM(net_income) AS TotalNetIncome\nFROM \n    annual_financials\nWHERE \n    ticker IN ('META') AND calendar_year BETWEEN 2021 AND 2025\nGROUP BY \n    calendar_year, ticker, companyName, companyNameName\nORDER BY \n    calendar_year ASC",
+   "status": "database error: Binder Error: Referenced column \"companyNameName\" not found in FROM clause!",
+   "seconds": 14.295884200022556,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|35": [
+  {
+   "sql": "SELECT \n    calendar_year AS Year, \n    ticker AS Company, \n    name AS CompanyName, \n    SUM(operating_income) AS TotalOperatingIncome, \n    SUM(net_income) AS TotalNetIncome\nFROM \n    annual_financials\nWHERE \n    ticker IN ('META') AND calendar_year BETWEEN 2021 AND 2025\nGROUP BY \n    calendar_year, ticker, companyName, companyNameName\nORDER BY \n    calendar_year ASC",
+   "status": "database error: Binder Error: Referenced column \"companyNameName\" not found in FROM clause!",
+   "seconds": 14.525883700000122,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    calendar_year AS Year, \n    ticker AS Company, \n    name AS CompanyName, \n    SUM(operating_income) AS TotalOperatingIncome, \n    SUM(net_income) AS TotalNetIncome\nFROM \n    annual_financials\nWHERE \n    ticker IN ('META') AND calendar_year BETWEEN 2021 AND 2025\nGROUP BY \n    calendar_year, ticker, companyName, companyNameName\nORDER BY \n    calendar_year ASC",
+   "status": "database error: Binder Error: Referenced column \"companyNameName\" not found in FROM clause!",
+   "seconds": 14.925071799894795,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    calendar_year AS Year, \n    ticker AS Company, \n    name AS CompanyName, \n    SUM(operating_income) AS TotalOperatingIncome, \n    SUM(net_income) AS TotalNetIncome\nFROM \n    annual_financials\nWHERE \n    ticker IN ('META') AND calendar_year BETWEEN 2021 AND 2025\nGROUP BY \n    calendar_year, ticker, companyName, companyNameName\nORDER BY \n    calendar_year ASC",
+   "status": "database error: Binder Error: Referenced column \"companyNameName\" not found in FROM clause!",
+   "seconds": 15.985166499973275,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|36": [
+  {
+   "sql": "SELECT SUM(CASE WHEN T3.calendar_year >= 2015 AND T3.calendar_year <= 2025 THEN T4.revenue ELSE 0 END) - SUM(T1.revenue) AS revenue_growth FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik INNER JOIN companies AS T3 ON T1.cik = T3.cik WHERE T3.name = 'Amazon'",
+   "status": "database error: Binder Error: Table \"T3\" does not have a column named \"calendar_year\"",
+   "seconds": 12.090775200049393,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|36": [
+  {
+   "sql": "SELECT \n    (SELECT SUM(revenue) FROM annual_financials WHERE ticker = 'AMZN') - \n    (SELECT SUM(revenue) FROM annual_financials WHERE ticker = 'AMZN' AND calendar_year BETWEEN 2015 AND 2025) * 100 / 100 * 100 AS revenue_growth_percentage",
+   "status": "ok",
+   "seconds": 11.364459300064482,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|36": [
+  {
+   "sql": "SELECT \n    (SELECT SUM(revenue) FROM annual_financials WHERE ticker = 'AMZN') - \n    (SELECT SUM(revenue) FROM annual_financials WHERE ticker = 'AMZN' AND calendar_year BETWEEN 2015 AND 2025) * 100 / 100 * 100 AS revenue_growth_percentage",
+   "status": "ok",
+   "seconds": 11.364459300064482,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|37": [
+  {
+   "sql": "SELECT AVG(net_margin) AS avg_net_margin\nFROM annual_financials\nWHERE calendar_year BETWEEN 2020 AND 2025",
+   "status": "database error: Binder Error: Referenced column \"net_margin\" not found in FROM clause!",
+   "seconds": 5.547137400018983,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|37": [
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T1.ticker LIKE '%ALPHABET%' AND T2.sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.calendar_year BETWEEN 2020 AND 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"net_margin\"",
+   "seconds": 18.196111700031906,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|37": [
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T1.ticker LIKE '%ALPHABET%' AND T2.sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.calendar_year BETWEEN 2020 AND 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"net_margin\"",
+   "seconds": 19.69148610008415,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T1.ticker LIKE '%ALPHABET%' AND T2.sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.calendar_year BETWEEN 2020 AND 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"net_margin\"",
+   "seconds": 19.140359400073066,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T1.ticker LIKE '%ALPHABET%' AND T2.sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.calendar_year BETWEEN 2020 AND 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"net_margin\"",
+   "seconds": 19.133194399997592,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|38": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2024\n  AND revenue > (SELECT SUM(revenue) FROM annual_financials WHERE calendar_year = 2024)\n  AND revenue_growth > 50",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 7.500494000036269,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|38": [
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2024 \nand revenue_growth > 50",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 6.68704119999893,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|38": [
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2024 \nand revenue_growth > 50",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 6.686652399948798,
+   "rows": null
+  },
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2024 \nand revenue_growth >= 50",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 6.524499899940565,
+   "rows": null
+  },
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2024 \nand revenue_growth >= 50\norder by revenue_growth desc",
+   "status": "database error: Binder Error: Referenced column \"revenue_growth\" not found in FROM clause!",
+   "seconds": 7.485948299989104,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|39": [
+  {
+   "sql": "SELECT MIN(calendar_year) FROM annual_financials WHERE ticker = 'PALANTIR'",
+   "status": "ok",
+   "seconds": 3.1283471999922767,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|39": [
+  {
+   "sql": "SELECT MIN(calendar_year) FROM annual_financials WHERE ticker = 'PALNT'",
+   "status": "ok",
+   "seconds": 4.402974000084214,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|39": [
+  {
+   "sql": "SELECT MIN(calendar_year) FROM annual_financials WHERE ticker = 'PALNT'",
+   "status": "ok",
+   "seconds": 4.402974000084214,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|40": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials WHERE name = 'Total Net Income' ORDER BY calendar_year DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 3.791426599957049,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|40": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials GROUP BY calendar_year ORDER BY SUM(total_net_income) DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"total_net_income\" not found in FROM clause!",
+   "seconds": 5.155274200020358,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|40": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials GROUP BY calendar_year ORDER BY SUM(total_net_income) DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"total_net_income\" not found in FROM clause!",
+   "seconds": 5.0691800999920815,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T1.calendar_year \nFROM annual_financials AS T1 \nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T2.total_net_income IS NOT NULL \nORDER BY T2.total_net_income DESC \nLIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"total_net_income\"",
+   "seconds": 10.819819699972868,
+   "rows": null
+  },
+  {
+   "sql": "SELECT T1.calendar_year \nFROM annual_financials AS T1 \nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T2.total_net_income IS NOT NULL \nORDER BY T2.total_net_income DESC \nLIMIT 1",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"total_net_income\"",
+   "seconds": 10.636872099945322,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|41": [
+  {
+   "sql": "SELECT T1.equity / T1.long_term_debt AS DebtToEquityRatio FROM annual_financials AS T1 INNER JOIN financial_ratios AS T2 ON T1.cik = T2.cik WHERE T1.ticker = 'IBM' AND T2.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 8.399076099973172,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|41": [
+  {
+   "sql": "select round(long_term_debt / equity, 2) as debt_to_equity_ratio from annual_financials where ticker = 'IBM' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 7.4603142000269145,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|41": [
+  {
+   "sql": "select round(long_term_debt / equity, 2) as debt_to_equity_ratio from annual_financials where ticker = 'IBM' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 7.4603142000269145,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|42": [
+  {
+   "sql": "SELECT \n    T1.cik, \n    T1.ticker, \n    T1.name, \n    T1.sector, \n    T1.calendar_year, \n    T1.revenue, \n    T1.operating_income, \n    T1.net_income, \n    T1.total_assets, \n    T1.equity, \n    T1.cash, \n    T1.long_term_debt, \n    T1.operating_cash_flow, \n    T1.capex, \n    T1.rnd_expense, \n    T1.eps_diluted, \n    T1.fcf_to_net_income, \n    T1.free_cash_flow, \n    T1.rnd_intensity, \n    T1.revenue_growth\nFROM",
+   "status": "parse error: Expected table name but got <Token token_type: TokenType.SENTINEL, text: SENTINEL, line: 1, col: 1, start: 0, end: 0, co",
+   "seconds": 19.645711999968626,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|42": [
+  {
+   "sql": "select round(cash / total_assets * 100, 2) as cash_share_of_total_assets from annual_financials where ticker = 'AAPL' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 7.97454139997717,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|42": [
+  {
+   "sql": "select round(cash / total_assets * 100, 2) as cash_share_of_total_assets from annual_financials where ticker = 'AAPL' and calendar_year = 2025",
+   "status": "ok",
+   "seconds": 7.97454139997717,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|43": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025\n  AND (liability / equity) > 10",
+   "status": "database error: Binder Error: Referenced column \"liability\" not found in FROM clause!",
+   "seconds": 5.1577622999902815,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|43": [
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and equity / liabilities > 10",
+   "status": "database error: Binder Error: Referenced column \"liabilities\" not found in FROM clause!",
+   "seconds": 6.350541000021622,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|43": [
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and equity / liabilities > 10",
+   "status": "database error: Binder Error: Referenced column \"liabilities\" not found in FROM clause!",
+   "seconds": 6.392822799971327,
+   "rows": null
+  },
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and equity / (equity + (revenue * (1 - capex))) > 10",
+   "status": "ok",
+   "seconds": 8.129503999953158,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT ticker, name FROM annual_financials WHERE calendar_year = 2025 AND equity / (equity + (revenue * (1 - capex))) > 10",
+   "status": "ok",
+   "seconds": 7.524731299956329,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|44": [
+  {
+   "sql": "SELECT \n    r.name AS company_name,\n    r.sector AS sector,\n    r.calendar_year AS year,\n    r.revenue_growth AS capex_capex,\n    r.roa AS capex_roa,\n    r.fcf_to_net_income AS capex_fcf,\n    r.rnd_intensity AS capex_rnd_intensity,\n    r.operating_cash_flow AS capex_operating_cash_flow,\n    r.net_income AS capex_net_income,\n    r.total_assets AS capex_total_assets,\n    r.total_liabilities AS capex_total_liabilities,\n    r.equity AS capex_equity,\n    r.long_term_debt AS capex_long_term_debt,\n    r.cash AS capex_cash,\n    r.roa AS capex_roa",
+   "status": "database error: Binder Error: Referenced table \"r\" not found!",
+   "seconds": 19.319936400046572,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|44": [
+  {
+   "sql": "select round(capex / fcf_to_net_income * 100, 2) as capex_percentage\nfrom financial_ratios\nwhere ticker = 'MSFT'\nand calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"capex\" not found in FROM clause!",
+   "seconds": 8.282408599974588,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|44": [
+  {
+   "sql": "select round(capex / fcf_to_net_income * 100, 2) as capex_percentage\nfrom financial_ratios\nwhere ticker = 'MSFT'\nand calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"capex\" not found in FROM clause!",
+   "seconds": 8.593268300057389,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    ROUND(\n        SUM(CASE WHEN T2.sector = 'Banks and finance' THEN T2.capex ELSE 0 END) /\n        SUM(T2.fcf_to_net_income) *\n        100, 2)\nFROM \n    annual_financials AS T1\nJOIN \n    financial_ratios AS T2\nON \n    T1.cik = T2.cik\nWHERE \n    T1.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"capex\"",
+   "seconds": 14.895544200087897,
+   "rows": null
+  },
+  {
+   "sql": "SELECT \n    ROUND(\n        SUM(CASE WHEN T2.sector = 'Banks and finance' THEN T2.capex ELSE 0 END) /\n        SUM(T2.fcf_to_net_income) *\n        100, 2)\nFROM \n    annual_financials AS T1\nJOIN \n    financial_ratios AS T2\nON \n    T1.cik = T2.cik\nWHERE \n    T1.calendar_year = 2025 AND T2.sector = 'Banks and finance'",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"capex\"",
+   "seconds": 16.30938240000978,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|45": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE calendar_year = 2025\n  AND (operating_margin > 0.2)\n  OR (net_margin > 0.2)",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 6.2934607999632135,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|45": [
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and operating_margin > 0.20",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 6.355699000065215,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|45": [
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and operating_margin > 0.20",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 6.389692800003104,
+   "rows": null
+  },
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and operating_margin > 0.20",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 6.791618600022048,
+   "rows": null
+  },
+  {
+   "sql": "select ticker, name \nfrom annual_financials \nwhere calendar_year = 2025 and operating_margin > 0.20",
+   "status": "database error: Binder Error: Referenced column \"operating_margin\" not found in FROM clause!",
+   "seconds": 7.0032194999512285,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|46": [
+  {
+   "sql": "SELECT T1.name, T1.sic_description FROM annual_financials AS T1 JOIN companies AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Energy'",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"sic_description\"",
+   "seconds": 6.298484599916264,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|46": [
+  {
+   "sql": "SELECT T1.name, T1.sic_description FROM companies AS T1 JOIN annual_financials AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Energy'",
+   "status": "ok",
+   "seconds": 7.7913799999514595,
+   "rows": 35
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|46": [
+  {
+   "sql": "SELECT T1.name, T1.sic_description FROM companies AS T1 JOIN annual_financials AS T2 ON T1.cik = T2.cik WHERE T2.sector = 'Energy'",
+   "status": "ok",
+   "seconds": 7.7913799999514595,
+   "rows": 35
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|47": [
+  {
+   "sql": "SELECT T1.revenue\nFROM annual_financials AS T1\nJOIN companies AS T2 ON T1.cik = T2.cik\nWHERE T2.sic_description LIKE '%semiconductors%'\nAND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 8.075748900067993,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|47": [
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductor%' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 9.383365800022148,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|47": [
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductor%' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 9.07093339995481,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductor%' AND T1.calendar_year = 2025 AND T2.sector NOT IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')",
+   "status": "ok",
+   "seconds": 14.98101059999317,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T1.revenue FROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sector NOT IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media') AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 14.211521300021559,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|48": [
+  {
+   "sql": "SELECT *\nFROM companies\nWHERE sic = 'Pharmaceutical Preparations'",
+   "status": "database error: Conversion Error: Could not convert string 'Pharmaceutical Preparations' to INT32",
+   "seconds": 3.3562384999822825,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|48": [
+  {
+   "sql": "SELECT cik, ticker, name FROM companies WHERE sic_description = 'Pharmaceutical Preparations'",
+   "status": "ok",
+   "seconds": 5.323291299981065,
+   "rows": 9
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|48": [
+  {
+   "sql": "SELECT cik, ticker, name FROM companies WHERE sic_description = 'Pharmaceutical Preparations'",
+   "status": "ok",
+   "seconds": 5.323291299981065,
+   "rows": 9
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|49": [
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN companies AS T2 ON T1.cik = T2.cik\nWHERE T2.sic = 7372 AND T1.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"net_margin\"",
+   "seconds": 8.43987870006822,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|49": [
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Other' AND T2.sector NOT IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.sic_code = 7372\nORDER BY T1.calendar_year DESC",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"sic_code\"",
+   "seconds": 18.303754300111905,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|49": [
+  {
+   "sql": "SELECT AVG(T1.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Other' AND T2.sector NOT IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.sic_code = 7372\nORDER BY T1.calendar_year DESC",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"sic_code\"",
+   "seconds": 18.70313610008452,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(T2.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Other' AND T2.sector NOT IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.sic_code = 7372\nORDER BY T1.calendar_year DESC",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"sic_code\"",
+   "seconds": 19.027842200011946,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(T2.net_margin) AS avg_net_margin\nFROM annual_financials AS T1\nJOIN financial_ratios AS T2 ON T1.cik = T2.cik AND T1.calendar_year = T2.calendar_year\nWHERE T2.sector = 'Other' AND T2.sector NOT IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware', 'Telecom and media')\nAND T1.sic_code IS NOT NULL\nORDER BY T1.calendar_year DESC",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"sic_code\"",
+   "seconds": 18.9159247999778,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema only|50": [
+  {
+   "sql": "SELECT *\nFROM annual_financials\nWHERE sector = 'Telecom' AND sector = 'media'\nAND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 5.1297497999621555,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|schema + notes + examples|50": [
+  {
+   "sql": "select name, net_income from annual_financials where ticker in (select ticker from financial_ratios where sector = 'Telecom and media' and calendar_year = 2025)",
+   "status": "ok",
+   "seconds": 7.687507799942978,
+   "rows": 48
+  }
+ ],
+ "Qwen/Qwen2.5-0.5B-Instruct|self-correction|50": [
+  {
+   "sql": "select name, net_income from annual_financials where ticker in (select ticker from financial_ratios where sector = 'Telecom and media' and calendar_year = 2025)",
+   "status": "ok",
+   "seconds": 7.687507799942978,
+   "rows": 48
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|1": [
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T2.name = 'Apple' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 29.009713500039652,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|1": [
+  {
+   "sql": "SELECT revenue FROM annual_financials WHERE ticker = 'AAPL' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 17.58938879997004,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|1": [
+  {
+   "sql": "SELECT revenue FROM annual_financials WHERE ticker = 'AAPL' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 17.58938879997004,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|2": [
+  {
+   "sql": "SELECT net_income \nFROM annual_financials \nJOIN companies ON annual_financials.cik = companies.cik \nWHERE ticker = 'MSFT' AND calendar_year = 2024",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"ticker\" (use: 'annual_financials.ticker' or 'companies.ticker')",
+   "seconds": 17.16513659991324,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|2": [
+  {
+   "sql": "SELECT net_income \nFROM annual_financials \nWHERE ticker = 'MSFT' AND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 17.836225400096737,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|2": [
+  {
+   "sql": "SELECT net_income \nFROM annual_financials \nWHERE ticker = 'MSFT' AND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 17.836225400096737,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|3": [
+  {
+   "sql": "SELECT total_assets \nFROM annual_financials \nJOIN companies ON annual_financials.cik = companies.cik \nWHERE ticker = 'JPM' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"ticker\" (use: 'annual_financials.ticker' or 'companies.ticker')",
+   "seconds": 17.115794399986044,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|3": [
+  {
+   "sql": "SELECT total_assets \nFROM annual_financials \nWHERE ticker = 'JPM' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 19.026375900022686,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|3": [
+  {
+   "sql": "SELECT total_assets \nFROM annual_financials \nWHERE ticker = 'JPM' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 19.026375900022686,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|4": [
+  {
+   "sql": "SELECT T1.net_margin \nFROM companies AS T1 \nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T1.name = 'NVIDIA' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"net_margin\"",
+   "seconds": 23.725457400083542,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|4": [
+  {
+   "sql": "SELECT net_margin \nFROM financial_ratios \nWHERE ticker = 'NVDA' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 17.982144900015555,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|4": [
+  {
+   "sql": "SELECT net_margin \nFROM financial_ratios \nWHERE ticker = 'NVDA' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 17.982144900015555,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|5": [
+  {
+   "sql": "SELECT T1.roe FROM companies AS T1 INNER JOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker WHERE T1.name = 'Coca-Cola' AND T2.calendar_year = 2023",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"roe\"",
+   "seconds": 23.337026600027457,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|5": [
+  {
+   "sql": "SELECT roe \nFROM financial_ratios \nWHERE ticker = 'KO' AND sector = 'Other' AND calendar_year = 2023",
+   "status": "ok",
+   "seconds": 19.831908800057136,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|5": [
+  {
+   "sql": "SELECT roe \nFROM financial_ratios \nWHERE ticker = 'KO' AND sector = 'Other' AND calendar_year = 2023",
+   "status": "ok",
+   "seconds": 19.40229839994572,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT roe \nFROM financial_ratios \nWHERE ticker = 'KO' AND sector = 'Other' AND calendar_year = 2023 AND roe IS NOT NULL",
+   "status": "ok",
+   "seconds": 21.12588720000349,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT roe \nFROM financial_ratios \nWHERE ticker = 'KO' AND sector = 'Other' AND calendar_year = 2023 AND roe IS NOT NULL",
+   "status": "ok",
+   "seconds": 22.33148519997485,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|6": [
+  {
+   "sql": "SELECT SUM(rnd_expense) AS total_rnd_expense\nFROM annual_financials\nJOIN companies ON annual_financials.cik = companies.cik\nWHERE companies.ticker LIKE '%META%' AND annual_financials.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 21.886072899913415,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|6": [
+  {
+   "sql": "SELECT rnd_expense \nFROM annual_financials \nWHERE ticker = 'META' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.665399000048637,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|6": [
+  {
+   "sql": "SELECT rnd_expense \nFROM annual_financials \nWHERE ticker = 'META' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.665399000048637,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|7": [
+  {
+   "sql": "SELECT eps_diluted \nFROM annual_financials \nWHERE ticker = 'MSFT' AND calendar_year = 2022",
+   "status": "ok",
+   "seconds": 13.025818999973126,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|7": [
+  {
+   "sql": "SELECT eps_diluted \nFROM annual_financials \nWHERE ticker = 'MSFT' AND calendar_year = 2022",
+   "status": "ok",
+   "seconds": 18.924203800037503,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|7": [
+  {
+   "sql": "SELECT eps_diluted \nFROM annual_financials \nWHERE ticker = 'MSFT' AND calendar_year = 2022",
+   "status": "ok",
+   "seconds": 18.924203800037503,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|8": [
+  {
+   "sql": "SELECT T1.free_cash_flow FROM annual_financials AS T1 INNER JOIN companies AS T2 ON T1.cik = T2.cik WHERE T1.ticker = 'GOOGL' AND T1.calendar_year = 2024",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"free_cash_flow\"",
+   "seconds": 20.923224700032733,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|8": [
+  {
+   "sql": "SELECT free_cash_flow \nFROM financial_ratios \nWHERE ticker = 'GOOGL' AND sector = 'Technology Hardware' AND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 20.68898169999011,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|8": [
+  {
+   "sql": "SELECT free_cash_flow \nFROM financial_ratios \nWHERE ticker = 'GOOGL' AND sector = 'Technology Hardware' AND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 21.21456140000373,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT free_cash_flow \nFROM financial_ratios \nWHERE ticker = 'GOOGL' AND sector = 'Technology Hardware' AND calendar_year = 2024 AND free_cash_flow IS NOT NULL",
+   "status": "ok",
+   "seconds": 22.508494900073856,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT free_cash_flow \nFROM financial_ratios \nWHERE ticker = 'GOOGL' AND sector = 'Technology Hardware' AND calendar_year = 2024 AND free_cash_flow IS NOT NULL",
+   "status": "ok",
+   "seconds": 23.49967289995402,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|9": [
+  {
+   "sql": "SELECT DISTINCT sector \nFROM companies \nJOIN annual_financials ON companies.cik = annual_financials.cik \nWHERE ticker LIKE '%NFLX%' AND sector IS NOT NULL",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"sector\" (use: 'companies.sector' or 'annual_financials.sector')",
+   "seconds": 15.58442249998916,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|9": [
+  {
+   "sql": "SELECT sector FROM financial_ratios WHERE ticker = 'NFLX' AND calendar_year = 2023",
+   "status": "ok",
+   "seconds": 15.572437199996784,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|9": [
+  {
+   "sql": "SELECT sector FROM financial_ratios WHERE ticker = 'NFLX' AND calendar_year = 2023",
+   "status": "ok",
+   "seconds": 15.572437199996784,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|10": [
+  {
+   "sql": "SELECT T1.operating_margin \nFROM companies AS T1 \nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T1.name = 'Tesla' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"operating_margin\"",
+   "seconds": 23.95561840001028,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|10": [
+  {
+   "sql": "SELECT operating_margin \nFROM financial_ratios \nWHERE ticker = 'TSLA' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 17.89231969998218,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|10": [
+  {
+   "sql": "SELECT operating_margin \nFROM financial_ratios \nWHERE ticker = 'TSLA' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 17.89231969998218,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|11": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1 \nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.calendar_year = 2025 \nWHERE T2.calendar_year = 2025 \nORDER BY T2.revenue DESC \nLIMIT 5",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"calendar_year\"",
+   "seconds": 25.017202500021085,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|11": [
+  {
+   "sql": "SELECT ticker, name \nFROM annual_financials \nWHERE calendar_year = 2025 \nORDER BY revenue DESC \nLIMIT 5",
+   "status": "ok",
+   "seconds": 19.39643690001685,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|11": [
+  {
+   "sql": "SELECT ticker, name \nFROM annual_financials \nWHERE calendar_year = 2025 \nORDER BY revenue DESC \nLIMIT 5",
+   "status": "ok",
+   "seconds": 19.39643690001685,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|12": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2024\nORDER BY T2.net_income DESC\nLIMIT 1",
+   "status": "ok",
+   "seconds": 25.680799000081606,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|12": [
+  {
+   "sql": "SELECT ticker \nFROM annual_financials \nWHERE calendar_year = 2024 AND net_income IS NOT NULL \nORDER BY net_income DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.450359200011007,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|12": [
+  {
+   "sql": "SELECT ticker \nFROM annual_financials \nWHERE calendar_year = 2024 AND net_income IS NOT NULL \nORDER BY net_income DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.450359200011007,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|13": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1 \nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T2.calendar_year = 2025 \nORDER BY T2.net_income DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 24.689733000006527,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|13": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 AND net_margin IS NOT NULL \nORDER BY net_margin DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 35.50259920000099,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|13": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 AND net_margin IS NOT NULL \nORDER BY net_margin DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 35.50259920000099,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|14": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2025\nORDER BY T1.roe DESC\nLIMIT 5",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"roe\"",
+   "seconds": 25.90372699999716,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|14": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing') \nAND calendar_year = 2025 AND roe IS NOT NULL \nORDER BY roe ASC LIMIT 5",
+   "status": "ok",
+   "seconds": 28.618602799950168,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|14": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing') \nAND calendar_year = 2025 AND roe IS NOT NULL \nORDER BY roe ASC LIMIT 5",
+   "status": "ok",
+   "seconds": 28.618602799950168,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|15": [
+  {
+   "sql": "SELECT \n    cik, \n    ticker, \n    name, \n    sector, \n    calendar_year, \n    revenue, \n    operating_income, \n    net_income, \n    total_assets, \n    total_liabilities, \n    equity, \n    cash, \n    long_term_debt, \n    operating_cash_flow, \n    capex, \n    rnd_expense, \n    eps_diluted\nFROM \n    annual_financials\nWHERE \n    calendar_year = 2025 AND \n    rnd_expense IS NOT NULL\nORDER BY \n    capex DESC\nLIMIT 1",
+   "status": "ok",
+   "seconds": 46.48499399994034,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|15": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector = 'Technology Hardware' AND calendar_year = 2025 AND rnd_expense IS NOT NULL \nORDER BY rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 22.82107259996701,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|15": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector = 'Technology Hardware' AND calendar_year = 2025 AND rnd_expense IS NOT NULL \nORDER BY rnd_expense DESC LIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 23.004492899985053,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector = 'Technology Hardware' AND calendar_year = 2025 AND rnd_expense IS NOT NULL \nORDER BY rnd_expense DESC \nLIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 25.56285859993659,
+   "rows": null
+  },
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector = 'Technology Hardware' AND calendar_year = 2025 AND rnd_expense IS NOT NULL \nORDER BY rnd_expense DESC \nLIMIT 1",
+   "status": "database error: Binder Error: Referenced column \"rnd_expense\" not found in FROM clause!",
+   "seconds": 24.41028449998703,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|16": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2025\nORDER BY T2.revenue_growth DESC\nLIMIT 3",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"revenue_growth\"",
+   "seconds": 26.096136699896306,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|16": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 \nORDER BY revenue_growth DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 33.70573540008627,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|16": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 \nORDER BY revenue_growth DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 33.70573540008627,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|17": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2025\nORDER BY T2.total_assets DESC\nLIMIT 1",
+   "status": "ok",
+   "seconds": 25.904842299991287,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|17": [
+  {
+   "sql": "SELECT T1.ticker, T1.total_assets \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T1.calendar_year = 2025 AND T2.sector = 'Banks and finance' \nORDER BY T1.total_assets DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 35.922764600021765,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|17": [
+  {
+   "sql": "SELECT T1.ticker, T1.total_assets \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T1.calendar_year = 2025 AND T2.sector = 'Banks and finance' \nORDER BY T1.total_assets DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 35.922764600021765,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|18": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2025\nORDER BY T2.rnd_expense / T2.revenue DESC\nLIMIT 5",
+   "status": "ok",
+   "seconds": 28.997714600060135,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|18": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Technology Hardware', 'Software and Internet') AND calendar_year = 2025 \nORDER BY rnd_intensity DESC \nLIMIT 5",
+   "status": "ok",
+   "seconds": 22.68248710001353,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|18": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Technology Hardware', 'Software and Internet') AND calendar_year = 2025 \nORDER BY rnd_intensity DESC \nLIMIT 5",
+   "status": "ok",
+   "seconds": 22.540316400001757,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Technology Hardware', 'Software and Internet') AND calendar_year = 2025 \nORDER BY rnd_intensity DESC \nLIMIT 5",
+   "status": "ok",
+   "seconds": 23.427810800028965,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Technology Hardware', 'Software and Internet') AND calendar_year = 2025 \nORDER BY rnd_intensity DESC \nLIMIT 5",
+   "status": "ok",
+   "seconds": 23.564143800060265,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|19": [
+  {
+   "sql": "SELECT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2025\nORDER BY T2.free_cash_flow DESC\nLIMIT 3",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"free_cash_flow\"",
+   "seconds": 26.11058800003957,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|19": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 AND free_cash_flow IS NOT NULL \nORDER BY free_cash_flow DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 35.91456499998458,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|19": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 AND free_cash_flow IS NOT NULL \nORDER BY free_cash_flow DESC \nLIMIT 3",
+   "status": "ok",
+   "seconds": 35.91456499998458,
+   "rows": 3
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|20": [
+  {
+   "sql": "SELECT \n    name \nFROM \n    companies \nJOIN \n    annual_financials ON companies.cik = annual_financials.cik \nWHERE \n    calendar_year = 2025 AND net_income < 0 \nORDER BY \n    abs(net_income) DESC \nLIMIT 1",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"name\" (use: 'companies.\"name\"' or 'annual_financials.\"name\"')",
+   "seconds": 25.023155400063843,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|20": [
+  {
+   "sql": "SELECT ticker \nFROM annual_financials \nWHERE calendar_year = 2025 AND net_income IS NOT NULL \nORDER BY ABS(net_income) DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.922638899995945,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|20": [
+  {
+   "sql": "SELECT ticker \nFROM annual_financials \nWHERE calendar_year = 2025 AND net_income IS NOT NULL \nORDER BY ABS(net_income) DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.922638899995945,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|21": [
+  {
+   "sql": "SELECT COUNT(*) FROM companies WHERE sector = 'Technology Hardware'",
+   "status": "ok",
+   "seconds": 7.5440736000891775,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|21": [
+  {
+   "sql": "SELECT COUNT(*) FROM companies WHERE sector = 'Technology hardware'",
+   "status": "ok",
+   "seconds": 11.578451800043695,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|21": [
+  {
+   "sql": "SELECT COUNT(*) FROM companies WHERE sector = 'Technology hardware'",
+   "status": "ok",
+   "seconds": 11.578451800043695,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|22": [
+  {
+   "sql": "SELECT SUM(revenue) \nFROM annual_financials \nWHERE sector = 'Retail' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 12.943124899989925,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|22": [
+  {
+   "sql": "SELECT SUM(total_revenue)\nFROM annual_financials\nJOIN companies ON annual_financials.cik = companies.cik\nWHERE sector = 'Retail' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"sector\" (use: 'annual_financials.sector' or 'companies.sector')",
+   "seconds": 22.92678820004221,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|22": [
+  {
+   "sql": "SELECT SUM(total_revenue)\nFROM annual_financials\nJOIN companies ON annual_financials.cik = companies.cik\nWHERE sector = 'Retail' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"sector\" (use: 'annual_financials.sector' or 'companies.sector')",
+   "seconds": 23.12848449999001,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(annual_financials.total_revenue)\nFROM annual_financials\nJOIN companies ON annual_financials.cik = companies.cik\nWHERE companies.sector = 'Retail' AND annual_financials.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"annual_financials\" does not have a column named \"total_revenue\"",
+   "seconds": 26.940657500061207,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(annual_financials.revenue)\nFROM annual_financials\nJOIN companies ON annual_financials.cik = companies.cik\nWHERE companies.sector = 'Retail' AND annual_financials.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 27.483247499912977,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|23": [
+  {
+   "sql": "SELECT \n    AVG(net_margin) AS median_net_margin\nFROM \n    financial_ratios fr\nJOIN \n    companies c ON fr.cik = c.cik AND fr.ticker = c.ticker\nWHERE \n    c.sector IN ('Software', 'Internet') AND fr.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 26.539580000098795,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|23": [
+  {
+   "sql": "SELECT AVG(net_margin) AS median_net_margin\nFROM financial_ratios\nWHERE sector = 'Software and internet'\nAND calendar_year = 2025\nGROUP BY sector",
+   "status": "ok",
+   "seconds": 21.422518700012006,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|23": [
+  {
+   "sql": "SELECT AVG(net_margin) AS median_net_margin\nFROM financial_ratios\nWHERE sector = 'Software and internet'\nAND calendar_year = 2025\nGROUP BY sector",
+   "status": "ok",
+   "seconds": 21.422518700012006,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|24": [
+  {
+   "sql": "SELECT AVG(roe) AS avg_roe_2025\nFROM financial_ratios\nWHERE calendar_year = 2025",
+   "status": "ok",
+   "seconds": 13.414447200018913,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|24": [
+  {
+   "sql": "SELECT sector, AVG(roe) \nFROM financial_ratios \nWHERE calendar_year = 2025 AND roe IS NOT NULL \nGROUP BY sector",
+   "status": "ok",
+   "seconds": 21.034184799995273,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|24": [
+  {
+   "sql": "SELECT sector, AVG(roe) \nFROM financial_ratios \nWHERE calendar_year = 2025 AND roe IS NOT NULL \nGROUP BY sector",
+   "status": "ok",
+   "seconds": 21.034184799995273,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|25": [
+  {
+   "sql": "SELECT COUNT(*) \nFROM annual_financials \nWHERE calendar_year = 2025 AND net_income < 0",
+   "status": "ok",
+   "seconds": 12.118325800052844,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|25": [
+  {
+   "sql": "SELECT COUNT(*) \nFROM annual_financials \nWHERE ticker IS NOT NULL AND net_income IS NULL AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.930318500031717,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|25": [
+  {
+   "sql": "SELECT COUNT(*) \nFROM annual_financials \nWHERE ticker IS NOT NULL AND net_income IS NULL AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.930318500031717,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|26": [
+  {
+   "sql": "SELECT \n    calendar_year, \n    SUM(net_income) AS total_net_income\nFROM \n    annual_financials\nWHERE \n    sector = 'BANKS'\nGROUP BY \n    calendar_year",
+   "status": "ok",
+   "seconds": 18.613664599950425,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|26": [
+  {
+   "sql": "SELECT \n    sector,\n    SUM(net_income) AS total_net_income\nFROM \n    financial_ratios\nWHERE \n    sector IN ('Banks and finance') AND calendar_year >= 2020\nGROUP BY \n    sector",
+   "status": "ok",
+   "seconds": 25.653107000049204,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|26": [
+  {
+   "sql": "SELECT \n    sector,\n    SUM(net_income) AS total_net_income\nFROM \n    financial_ratios\nWHERE \n    sector IN ('Banks and finance') AND calendar_year >= 2020\nGROUP BY \n    sector",
+   "status": "ok",
+   "seconds": 25.653107000049204,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|27": [
+  {
+   "sql": "SELECT sector, COUNT(*) FROM companies GROUP BY sector",
+   "status": "ok",
+   "seconds": 7.365314100054093,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|27": [
+  {
+   "sql": "SELECT sector, COUNT(*) as company_count\nFROM companies\nGROUP BY sector",
+   "status": "ok",
+   "seconds": 14.713112099911086,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|27": [
+  {
+   "sql": "SELECT sector, COUNT(*) as company_count\nFROM companies\nGROUP BY sector",
+   "status": "ok",
+   "seconds": 14.713112099911086,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|28": [
+  {
+   "sql": "SELECT \n    T1.sector, \n    MAX(T3.rnd_expense) AS max_rnd_expense\nFROM \n    companies AS T1\nJOIN \n    annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nJOIN \n    financial_ratios AS T3 ON T1.cik = T3.cik AND T1.ticker = T3.ticker\nWHERE \n    T2.calendar_year = 2025\nGROUP BY \n    T1.sector\nORDER BY \n    max_rnd_expense DESC\nLIMIT 1",
+   "status": "database error: Binder Error: Table \"T3\" does not have a column named \"rnd_expense\"",
+   "seconds": 48.54847089992836,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|28": [
+  {
+   "sql": "SELECT sector \nFROM financial_ratios \nWHERE ticker IN ('AAPL', 'MSFT', 'GOOGL') -- Example company tickers\nAND ticker NOT LIKE '%-A%' AND ticker NOT LIKE '%-I%' -- Exclude non-tech stocks\nAND ticker NOT LIKE '%-T%' -- Exclude tech stocks\nAND ticker NOT LIKE '%-G%' -- Exclude general conglomerates\nAND ticker NOT LIKE '%-X%' -- Exclude exchange-traded funds\nAND ticker NOT LIKE '%-V%' -- Exclude venture capital firms\nAND ticker NOT LIKE '%-C%' -- Exclude closed-end funds\nAND ticker NOT LIKE '%-P%' -- Exclude private-equity firms\nAND ticker NOT LIKE '%-S%' -- Exclude special purpose acquisition companies\nAND ticker NOT LIKE '%",
+   "status": "parse error: Error tokenizing 'rpose acquisition companies",
+   "seconds": 60.931166799971834,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|28": [
+  {
+   "sql": "SELECT sector \nFROM financial_ratios \nWHERE ticker IN ('AAPL', 'MSFT', 'GOOGL') -- Example company tickers\nAND ticker NOT LIKE '%-A%' AND ticker NOT LIKE '%-I%' -- Exclude non-tech stocks\nAND ticker NOT LIKE '%-T%' -- Exclude tech stocks\nAND ticker NOT LIKE '%-G%' -- Exclude general conglomerates\nAND ticker NOT LIKE '%-X%' -- Exclude exchange-traded funds\nAND ticker NOT LIKE '%-V%' -- Exclude venture capital firms\nAND ticker NOT LIKE '%-C%' -- Exclude closed-end funds\nAND ticker NOT LIKE '%-P%' -- Exclude private-equity firms\nAND ticker NOT LIKE '%-S%' -- Exclude special purpose acquisition companies\nAND ticker NOT LIKE '%",
+   "status": "parse error: Error tokenizing 'rpose acquisition companies",
+   "seconds": 60.467236800002865,
+   "rows": null
+  },
+  {
+   "sql": "SELECT sector \nFROM financial_ratios \nWHERE ticker IN ('AAPL', 'MSFT', 'GOOGL') -- Example company tickers\nAND ticker NOT LIKE '%-A%' AND ticker NOT LIKE '%-I%' -- Exclude non-tech stocks\nAND ticker NOT LIKE '%-T%' -- Exclude tech stocks\nAND ticker NOT LIKE '%-G%' -- Exclude general conglomerates\nAND ticker NOT LIKE '%-X%' -- Exclude venture capital firms\nAND ticker NOT LIKE '%-C%' -- Exclude closed-end funds\nAND ticker NOT LIKE '%-P%' -- Exclude private-equity firms\nAND ticker NOT LIKE '%-S%' -- Exclude special purpose acquisition companies\nAND ticker NOT LIKE '%-V%' -- Exclude value funds\nAND ticker NOT LIKE '%-E",
+   "status": "parse error: Error tokenizing '%' -- Exclude value funds",
+   "seconds": 64.04207169997972,
+   "rows": null
+  },
+  {
+   "sql": "SELECT sector \nFROM financial_ratios \nWHERE ticker IN ('AAPL', 'MSFT', 'GOOGL') -- Example company tickers\nAND ticker NOT LIKE '%-A%' AND ticker NOT LIKE '%-I%' -- Exclude non-tech stocks\nAND ticker NOT LIKE '%-T%' -- Exclude tech stocks\nAND ticker NOT LIKE '%-G%' -- Exclude general conglomerates\nAND ticker NOT LIKE '%-X%' -- Exclude venture capital firms\nAND ticker NOT LIKE '%-C%' -- Exclude closed-end funds\nAND ticker NOT LIKE '%-P%' -- Exclude private-equity firms\nAND ticker NOT LIKE '%-S%' -- Exclude special purpose acquisition companies\nAND ticker NOT LIKE '%-V%' -- Exclude value funds\nAND ticker NOT LIKE '%-E%' -- Exclude",
+   "status": "ok",
+   "seconds": 67.75308449997101,
+   "rows": 46
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|29": [
+  {
+   "sql": "SELECT AVG(operating_margin) AS avg_operating_margin\nFROM financial_ratios\nWHERE sector = 'Health Care' AND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 16.422714499989524,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|29": [
+  {
+   "sql": "SELECT AVG(operating_margin)\nFROM financial_ratios\nWHERE sector = 'Health care'\nAND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 19.1902989000082,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|29": [
+  {
+   "sql": "SELECT AVG(operating_margin)\nFROM financial_ratios\nWHERE sector = 'Health care'\nAND calendar_year = 2024",
+   "status": "ok",
+   "seconds": 19.1902989000082,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|30": [
+  {
+   "sql": "SELECT SUM(free_cash_flow) AS total_free_cash_flow\nFROM financial_ratios\nWHERE calendar_year = 2025",
+   "status": "ok",
+   "seconds": 12.644914699951187,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|30": [
+  {
+   "sql": "SELECT SUM(free_cash_flow)\nFROM annual_financials\nWHERE calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 17.053955400013365,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|30": [
+  {
+   "sql": "SELECT SUM(free_cash_flow)\nFROM annual_financials\nWHERE calendar_year = 2025",
+   "status": "database error: Binder Error: Referenced column \"free_cash_flow\" not found in FROM clause!",
+   "seconds": 17.507860900019296,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(annual_financials.free_cash_flow)\nFROM annual_financials\nJOIN financial_ratios ON annual_financials.cik = financial_ratios.cik AND annual_financials.ticker = financial_ratios.ticker\nWHERE annual_financials.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"annual_financials\" does not have a column named \"free_cash_flow\"",
+   "seconds": 28.966099499957636,
+   "rows": null
+  },
+  {
+   "sql": "SELECT SUM(financial_ratios.free_cash_flow)\nFROM annual_financials\nJOIN financial_ratios ON annual_financials.cik = financial_ratios.cik AND annual_financials.ticker = financial_ratios.ticker\nWHERE financial_ratios.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 29.263429699931294,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|31": [
+  {
+   "sql": "SELECT \n    calendar_year, \n    revenue\nFROM \n    annual_financials\nWHERE \n    ticker = 'NVDA'\nORDER BY \n    calendar_year",
+   "status": "ok",
+   "seconds": 16.43818000005558,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|31": [
+  {
+   "sql": "SELECT \n    calendar_year, \n    revenue\nFROM \n    annual_financials\nWHERE \n    ticker = 'NVDA'\nORDER BY \n    calendar_year",
+   "status": "ok",
+   "seconds": 21.59592240001075,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|31": [
+  {
+   "sql": "SELECT \n    calendar_year, \n    revenue\nFROM \n    annual_financials\nWHERE \n    ticker = 'NVDA'\nORDER BY \n    calendar_year",
+   "status": "ok",
+   "seconds": 21.59592240001075,
+   "rows": 16
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|32": [
+  {
+   "sql": "SELECT T1.revenue_growth FROM companies AS T1 JOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker WHERE T1.name = 'Microsoft' AND T2.calendar_year = 2025",
+   "status": "database error: Binder Error: Table \"T1\" does not have a column named \"revenue_growth\"",
+   "seconds": 23.42673500010278,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|32": [
+  {
+   "sql": "SELECT AVG(revenue_growth)\nFROM financial_ratios\nWHERE ticker = 'MSFT'\nAND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.61298950004857,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|32": [
+  {
+   "sql": "SELECT AVG(revenue_growth)\nFROM financial_ratios\nWHERE ticker = 'MSFT'\nAND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 18.61298950004857,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|33": [
+  {
+   "sql": "SELECT calendar_year \nFROM annual_financials \nWHERE ticker = 'AAPL' \nORDER BY net_income DESC \nLIMIT 1",
+   "status": "ok",
+   "seconds": 12.865553300012834,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|33": [
+  {
+   "sql": "SELECT calendar_year \nFROM annual_financials \nWHERE ticker = 'AAPL' AND net_income IS NOT NULL \nORDER BY net_income DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.06245849991683,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|33": [
+  {
+   "sql": "SELECT calendar_year \nFROM annual_financials \nWHERE ticker = 'AAPL' AND net_income IS NOT NULL \nORDER BY net_income DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 20.06245849991683,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|34": [
+  {
+   "sql": "SELECT COUNT(calendar_year) \nFROM annual_financials \nWHERE ticker = 'TSLA' AND net_income < 0",
+   "status": "ok",
+   "seconds": 12.791701999958605,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|34": [
+  {
+   "sql": "SELECT COUNT(calendar_year)\nFROM annual_financials\nWHERE ticker = 'TSLA'\nAND net_income IS NULL",
+   "status": "ok",
+   "seconds": 18.129967599990778,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|34": [
+  {
+   "sql": "SELECT COUNT(calendar_year)\nFROM annual_financials\nWHERE ticker = 'TSLA'\nAND net_income IS NULL",
+   "status": "ok",
+   "seconds": 18.129967599990778,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|35": [
+  {
+   "sql": "SELECT \n    calendar_year, \n    net_income\nFROM \n    annual_financials\nWHERE \n    ticker = 'META' AND calendar_year BETWEEN 2021 AND 2025",
+   "status": "ok",
+   "seconds": 19.20861660002265,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|35": [
+  {
+   "sql": "SELECT calendar_year, net_income \nFROM annual_financials \nWHERE ticker = 'META' AND calendar_year BETWEEN 2021 AND 2025",
+   "status": "ok",
+   "seconds": 21.103418300044723,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|35": [
+  {
+   "sql": "SELECT calendar_year, net_income \nFROM annual_financials \nWHERE ticker = 'META' AND calendar_year BETWEEN 2021 AND 2025",
+   "status": "ok",
+   "seconds": 21.103418300044723,
+   "rows": 5
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|36": [
+  {
+   "sql": "SELECT \n    (annual_financials.revenue_2025 - annual_financials.revenue_2015) AS revenue_growth\nFROM \n    annual_financials\nWHERE \n    annual_financials.ticker = 'AMZN'",
+   "status": "database error: Binder Error: Table \"annual_financials\" does not have a column named \"revenue_2025\"",
+   "seconds": 22.427419199957512,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|36": [
+  {
+   "sql": "SELECT \n    calendar_year,\n    revenue,\n    revenue - LAG(revenue) OVER (ORDER BY calendar_year) AS revenue_growth\nFROM \n    annual_financials\nWHERE \n    ticker = 'AMZN'\nAND \n    calendar_year BETWEEN 2015 AND 2025",
+   "status": "ok",
+   "seconds": 30.37664309993852,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|36": [
+  {
+   "sql": "SELECT \n    calendar_year,\n    revenue,\n    revenue - LAG(revenue) OVER (ORDER BY calendar_year) AS revenue_growth\nFROM \n    annual_financials\nWHERE \n    ticker = 'AMZN'\nAND \n    calendar_year BETWEEN 2015 AND 2025",
+   "status": "ok",
+   "seconds": 30.37664309993852,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|37": [
+  {
+   "sql": "SELECT AVG(net_margin) AS avg_net_margin\nFROM financial_ratios\nWHERE cik = '16493' -- Replace '16493' with the actual Cik number for Alphabet\nAND ticker LIKE '%GOOGL%' \nAND calendar_year BETWEEN 2020 AND 2025",
+   "status": "ok",
+   "seconds": 27.82412560004741,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|37": [
+  {
+   "sql": "SELECT AVG(net_margin)\nFROM financial_ratios\nWHERE sector = 'Technology hardware'\nAND calendar_year BETWEEN 2020 AND 2025",
+   "status": "ok",
+   "seconds": 20.23236830008682,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|37": [
+  {
+   "sql": "SELECT AVG(net_margin)\nFROM financial_ratios\nWHERE sector = 'Technology hardware'\nAND calendar_year BETWEEN 2020 AND 2025",
+   "status": "ok",
+   "seconds": 20.23236830008682,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|38": [
+  {
+   "sql": "SELECT DISTINCT cik, ticker, name \nFROM companies AS C\nJOIN annual_financials AS A ON C.cik = A.cik AND C.ticker = A.ticker\nWHERE A.calendar_year = 2024 AND A.revenue_growth > 0.5",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'C.cik' or 'A.cik')",
+   "seconds": 24.64943630003836,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|38": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2024 AND revenue_growth > 0.5 ORDER BY revenue_growth DESC",
+   "status": "ok",
+   "seconds": 34.60298399999738,
+   "rows": 2
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|38": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2024 AND revenue_growth > 0.5 ORDER BY revenue_growth DESC",
+   "status": "ok",
+   "seconds": 34.60298399999738,
+   "rows": 2
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|39": [
+  {
+   "sql": "SELECT MIN(calendar_year) \nFROM annual_financials \nJOIN companies ON annual_financials.cik = companies.cik \nWHERE ticker LIKE '%Palantir%' AND sector = 'Technology'",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"ticker\" (use: 'annual_financials.ticker' or 'companies.ticker')",
+   "seconds": 16.60005730006378,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|39": [
+  {
+   "sql": "SELECT MIN(calendar_year)\nFROM annual_financials\nWHERE ticker = 'PLTR'",
+   "status": "ok",
+   "seconds": 15.37481279997155,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|39": [
+  {
+   "sql": "SELECT MIN(calendar_year)\nFROM annual_financials\nWHERE ticker = 'PLTR'",
+   "status": "ok",
+   "seconds": 15.37481279997155,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|40": [
+  {
+   "sql": "SELECT calendar_year \nFROM annual_financials \nGROUP BY calendar_year \nORDER BY SUM(net_income) DESC \nLIMIT 1",
+   "status": "ok",
+   "seconds": 12.506678499979898,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|40": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials GROUP BY calendar_year ORDER BY SUM(net_income) DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 15.48137619998306,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|40": [
+  {
+   "sql": "SELECT calendar_year FROM annual_financials GROUP BY calendar_year ORDER BY SUM(net_income) DESC LIMIT 1",
+   "status": "ok",
+   "seconds": 15.48137619998306,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|41": [
+  {
+   "sql": "SELECT \n    CAST(long_term_debt AS REAL) / equity AS debt_to_equity_ratio\nFROM \n    annual_financials\nWHERE \n    cik = 'IBM' AND \n    calendar_year = 2025",
+   "status": "database error: Conversion Error: Could not convert string 'IBM' to INT64",
+   "seconds": 20.02848679991439,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|41": [
+  {
+   "sql": "SELECT \n    equity_ratio \nFROM \n    financial_ratios \nWHERE \n    ticker = 'IBM' AND \n    sector = 'Technology Hardware' AND \n    calendar_year = 2025",
+   "status": "ok",
+   "seconds": 23.458366699982435,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|41": [
+  {
+   "sql": "SELECT \n    equity_ratio \nFROM \n    financial_ratios \nWHERE \n    ticker = 'IBM' AND \n    sector = 'Technology Hardware' AND \n    calendar_year = 2025",
+   "status": "ok",
+   "seconds": 22.950716100051068,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT \n    equity_ratio \nFROM \n    financial_ratios \nWHERE \n    ticker = 'IBM' AND \n    sector = 'Technology Hardware' AND \n    calendar_year = 2025",
+   "status": "ok",
+   "seconds": 24.458696000045165,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT \n    equity_ratio \nFROM \n    financial_ratios \nWHERE \n    ticker = 'IBM' AND \n    sector = 'Technology Hardware' AND \n    calendar_year = 2025",
+   "status": "ok",
+   "seconds": 24.135080499923788,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|42": [
+  {
+   "sql": "SELECT \n    (cash / total_assets) * 100 AS cash_share_of_total_assets\nFROM \n    annual_financials\nJOIN \n    companies ON annual_financials.cik = companies.cik\nWHERE \n    ticker = 'AAPL' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"ticker\" (use: 'annual_financials.ticker' or 'companies.ticker')",
+   "seconds": 25.940050199977122,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|42": [
+  {
+   "sql": "SELECT \n    cash / total_assets AS cash_per_asset\nFROM \n    annual_financials\nWHERE \n    ticker = 'AAPL' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 22.720780200092122,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|42": [
+  {
+   "sql": "SELECT \n    cash / total_assets AS cash_per_asset\nFROM \n    annual_financials\nWHERE \n    ticker = 'AAPL' AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 22.720780200092122,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|43": [
+  {
+   "sql": "SELECT DISTINCT cik, ticker, name \nFROM companies AS C\nJOIN annual_financials AS A ON C.cik = A.cik AND C.ticker = A.ticker\nWHERE A.calendar_year = 2025 AND (A.total_liabilities / A.equity) > 10",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'C.cik' or 'A.cik')",
+   "seconds": 26.27283869998064,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|43": [
+  {
+   "sql": "SELECT DISTINCT cik, ticker \nFROM companies \nJOIN annual_financials ON companies.cik = annual_financials.cik \nWHERE calendar_year = 2025 AND total_liabilities > 10 * equity",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'companies.cik' or 'annual_financials.cik')",
+   "seconds": 26.080350800068118,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|43": [
+  {
+   "sql": "SELECT DISTINCT cik, ticker \nFROM companies \nJOIN annual_financials ON companies.cik = annual_financials.cik \nWHERE calendar_year = 2025 AND total_liabilities > 10 * equity",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'companies.cik' or 'annual_financials.cik')",
+   "seconds": 25.71728730003815,
+   "rows": null
+  },
+  {
+   "sql": "SELECT DISTINCT cik AS company_cik, ticker AS company_ticker \nFROM companies \nJOIN annual_financials ON companies.cik = annual_financials.cik \nWHERE calendar_year = 2025 AND total_liabilities > 10 * equity",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'companies.cik' or 'annual_financials.cik')",
+   "seconds": 28.73214870004449,
+   "rows": null
+  },
+  {
+   "sql": "SELECT DISTINCT cik AS company_cik, ticker AS company_ticker \nFROM companies \nJOIN annual_financials ON companies.cik = annual_financials.cik \nWHERE calendar_year = 2025 AND total_liabilities > 10 * equity",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'companies.cik' or 'annual_financials.cik')",
+   "seconds": 45.82097769994289,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|44": [
+  {
+   "sql": "SELECT \n    (capex / operating_cash_flow) * 100 AS capex_percentage\nFROM \n    annual_financials\nJOIN \n    companies ON annual_financials.cik = companies.cik AND annual_financials.ticker = companies.ticker\nWHERE \n    companies.name = 'Microsoft' AND annual_financials.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 62.310950099956244,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|44": [
+  {
+   "sql": "SELECT \n    CAST(SUM(capex) AS REAL) / SUM(operating_cash_flow)\nFROM \n    annual_financials\nWHERE \n    ticker = 'MSFT'\n    AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 70.33116099995095,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|44": [
+  {
+   "sql": "SELECT \n    CAST(SUM(capex) AS REAL) / SUM(operating_cash_flow)\nFROM \n    annual_financials\nWHERE \n    ticker = 'MSFT'\n    AND calendar_year = 2025",
+   "status": "ok",
+   "seconds": 70.33116099995095,
+   "rows": 1
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|45": [
+  {
+   "sql": "SELECT DISTINCT T1.name \nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker\nWHERE T2.calendar_year = 2025 AND T2.roa > 0.20",
+   "status": "database error: Binder Error: Table \"T2\" does not have a column named \"roa\"",
+   "seconds": 45.83776989998296,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|45": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 AND roa > 0.20",
+   "status": "ok",
+   "seconds": 64.305179100018,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|45": [
+  {
+   "sql": "SELECT ticker \nFROM financial_ratios \nWHERE sector IN ('Banks and finance', 'Energy', 'Health care', 'Insurance', 'Manufacturing', 'Other', 'Real estate and holdings', 'Retail', 'Software and internet', 'Technology hardware') \nAND calendar_year = 2025 AND roa > 0.20",
+   "status": "ok",
+   "seconds": 64.305179100018,
+   "rows": 11
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|46": [
+  {
+   "sql": "SELECT name, sic_description FROM companies WHERE sector = 'Energy'",
+   "status": "ok",
+   "seconds": 15.81554690003395,
+   "rows": 6
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|46": [
+  {
+   "sql": "SELECT name, sic_description FROM companies WHERE sector = 'Energy'",
+   "status": "ok",
+   "seconds": 29.100213299971074,
+   "rows": 6
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|46": [
+  {
+   "sql": "SELECT name, sic_description FROM companies WHERE sector = 'Energy'",
+   "status": "ok",
+   "seconds": 29.100213299971074,
+   "rows": 6
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|47": [
+  {
+   "sql": "SELECT \n    SUM(revenue) AS total_revenue_2025\nFROM \n    annual_financials af\nJOIN \n    companies c ON af.cik = c.cik\nWHERE \n    c.sic_description LIKE '%semiconductors%'\nGROUP BY \n    cik",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"cik\" (use: 'af.cik' or 'c.cik')",
+   "seconds": 45.91650179994758,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|47": [
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductors%' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 52.603366299998015,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|47": [
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductors%' AND T1.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 52.76715919992421,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductors%' AND T1.calendar_year = 2025 AND T1.revenue IS NOT NULL",
+   "status": "ok",
+   "seconds": 57.11505359993316,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT T1.revenue \nFROM annual_financials AS T1 \nJOIN companies AS T2 ON T1.cik = T2.cik \nWHERE T2.sic_description LIKE '%semiconductors%' AND T1.calendar_year = 2025 AND T1.revenue IS NOT NULL AND T1.operating_income IS NOT NULL",
+   "status": "ok",
+   "seconds": 65.77874800004065,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|48": [
+  {
+   "sql": "SELECT DISTINCT T1.name \nFROM companies AS T1 \nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.ticker = T2.ticker \nWHERE T1.sic_description LIKE '%pharmaceutical preparations%'",
+   "status": "ok",
+   "seconds": 37.79584460007027,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|48": [
+  {
+   "sql": "SELECT DISTINCT cik, ticker, name, sic, sic_description, sector \nFROM companies \nWHERE sic_description LIKE '%pharmaceutical preparations%'",
+   "status": "ok",
+   "seconds": 36.036488199955784,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|48": [
+  {
+   "sql": "SELECT DISTINCT cik, ticker, name, sic, sic_description, sector \nFROM companies \nWHERE sic_description LIKE '%pharmaceutical preparations%'",
+   "status": "ok",
+   "seconds": 36.2606933999341,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT DISTINCT cik, ticker, name, sic, sic_description, sector \nFROM companies \nWHERE sic_description LIKE '%pharmaceutical preparations%' OR sic_description LIKE '%pharmaceutical products%'",
+   "status": "ok",
+   "seconds": 41.76320529996883,
+   "rows": 0
+  },
+  {
+   "sql": "SELECT DISTINCT cik, ticker, name, sic, sic_description, sector \nFROM companies \nWHERE sic_description LIKE '%pharmaceutical%'",
+   "status": "ok",
+   "seconds": 39.95027739997022,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|49": [
+  {
+   "sql": "SELECT AVG(net_margin) AS avg_net_margin\nFROM financial_ratios\nWHERE calendar_year = 2025 AND sic = 7372",
+   "status": "database error: Binder Error: Referenced column \"sic\" not found in FROM clause!",
+   "seconds": 29.502364999963902,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|49": [
+  {
+   "sql": "SELECT AVG(net_margin) \nFROM financial_ratios \nWHERE sector = 'Manufacturing' AND calendar_year = 2025 AND sic_code = 7372",
+   "status": "database error: Binder Error: Referenced column \"sic_code\" not found in FROM clause!",
+   "seconds": 48.90868970006704,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|49": [
+  {
+   "sql": "SELECT AVG(net_margin) \nFROM financial_ratios \nWHERE sector = 'Manufacturing' AND calendar_year = 2025 AND sic_code = 7372",
+   "status": "database error: Binder Error: Referenced column \"sic_code\" not found in FROM clause!",
+   "seconds": 43.276329200016335,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(net_margin) \nFROM financial_ratios \nWHERE sector = 'Manufacturing' AND calendar_year = 2025 AND sic = 7372",
+   "status": "database error: Binder Error: Referenced column \"sic\" not found in FROM clause!",
+   "seconds": 41.983224599971436,
+   "rows": null
+  },
+  {
+   "sql": "SELECT AVG(net_margin) \nFROM financial_ratios \nWHERE sector = 'Manufacturing' AND calendar_year = 2025 AND sic = 7372",
+   "status": "database error: Binder Error: Referenced column \"sic\" not found in FROM clause!",
+   "seconds": 43.5842672000872,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema only|50": [
+  {
+   "sql": "SELECT T1.name AS company_name, T3.net_income AS net_income_2025\nFROM companies AS T1\nJOIN annual_financials AS T2 ON T1.cik = T2.cik AND T1.sector = 'Telecom' OR T1.sector = 'Media'\nJOIN financial_ratios AS T3 ON T1.cik = T3.cik AND T1.sector = 'Telecom' OR T1.sector = 'Media'\nWHERE T2.calendar_year = 2025",
+   "status": "ok",
+   "seconds": 73.4793914000038,
+   "rows": 0
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|schema + notes + examples|50": [
+  {
+   "sql": "SELECT ticker, net_income \nFROM annual_financials \nJOIN companies ON annual_financials.cik = companies.cik \nWHERE sector = 'Telecom and media' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"ticker\" (use: 'annual_financials.ticker' or 'companies.ticker')",
+   "seconds": 46.824215200031176,
+   "rows": null
+  }
+ ],
+ "Qwen/Qwen2.5-1.5B-Instruct|self-correction|50": [
+  {
+   "sql": "SELECT ticker, net_income \nFROM annual_financials \nJOIN companies ON annual_financials.cik = companies.cik \nWHERE sector = 'Telecom and media' AND calendar_year = 2025",
+   "status": "database error: Binder Error: Ambiguous reference to column name \"ticker\" (use: 'annual_financials.ticker' or 'companies.ticker')",
+   "seconds": 45.96020969992969,
+   "rows": null
+  },
+  {
+   "sql": "SELECT t1.ticker, t2.net_income \nFROM annual_financials AS t1 \nJOIN companies AS t2 ON t1.cik = t2.cik \nWHERE t1.sector = 'Telecom and media' AND t1.calendar_year = 2025 AND t2.ticker IS NOT NULL",
+   "status": "database error: Binder Error: Table \"t2\" does not have a column named \"net_income\"",
+   "seconds": 60.1637880000053,
+   "rows": null
+  },
+  {
+   "sql": "SELECT t1.ticker, t2.net_income \nFROM annual_financials AS t1 \nJOIN companies AS t2 ON t1.cik = t2.cik \nWHERE t1.sector = 'Telecom and media' AND t1.calendar_year = 2025 AND t2.ticker IS NOT NULL AND t2.net_income IS NOT NULL",
+   "status": "database error: Binder Error: Table \"t2\" does not have a column named \"net_income\"",
+   "seconds": 68.59178580006119,
+   "rows": null
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+duckdb
+sqlglot
+pandas
+numpy
+torch
+transformers
+matplotlib
+seaborn
+jupyter
